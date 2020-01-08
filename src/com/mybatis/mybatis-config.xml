@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="AdminUser" type="com.po.AdminUser"/>
+        <typeAlias alias="Students" type="com.po.Students"/>
+        <typeAlias alias="Notice" type="com.po.Notice"/>
+        <typeAlias alias="User" type="com.po.User"/>
+     </typeAliases>
+	 <mappers>
+        <mapper resource="com/mybatis/admin/AdminMapper.xml"/>
+        <mapper resource="com/mybatis/admin/StudentsMapper.xml"/> 
+        <mapper resource="com/mybatis/admin/NoticeMapper.xml"/> 
+        <mapper resource="com/mybatis/before/IndexMapper.xml"/>
+        <mapper resource="com/mybatis/before/UserMapper.xml"/>  
+ 	</mappers>
+</configuration>
+

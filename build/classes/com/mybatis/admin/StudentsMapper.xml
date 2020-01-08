@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.StudentsDao">
+	<!-- 查询所有学生 -->
+	<select id="selectStudents"  resultType="Students">
+		select * from students
+	</select>
+	<select id="selectAStudent"  parameterType="String" resultType="Integer">
+		select count(*) from students where id=#{id}
+	</select>
+	<!-- 根据学号查询学生 -->
+	<select id="selectStudentsById"  resultType="Students">
+		select * from students where ids=#{id}
+	</select>
+	<!-- 根据id查询学生 -->
+	<select id="selectStudentsByIds"  resultType="Students">
+		select * from students where ids=#{id}
+	</select>
+	<!-- 根据院系查询学生 -->
+	<select id="selectStudentsByyuanxi"  resultType="Students">
+		select * from students where stuyuanxi=#{stuyuanxi}
+	</select>
+	<!-- 根据宿舍查询学生 -->
+	<select id="selectStudentsBydorm"  resultType="Students">
+		select * from students where studorm=#{studorm}
+	</select>
+	<!-- 根据宿舍号查询学生 -->
+	<select id="selectStudentsBydromnumber"  resultType="Students">
+		select * from students where studromnumber=#{studromnumber}
+	</select>
+	
+	<!-- 删除一个学生 -->
+	<delete id="deleteAStudents" parameterType="String">
+		delete from students where id=#{id}
+	</delete>
+	<!-- 删除多个学生 -->
+	<delete id="deleteStudents"  parameterType="List">
+		delete from students where id in
+		<foreach item="item" index="index" collection="list"
+		open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	<!-- 添加学生 -->
+	<insert id="addStudents" parameterType="Students">
+		insert into students (id,stuname,stusex,stuage,stuyuanxi,stuaddress,stuphone,studorm,studromnumber,logoImage)
+		values (#{id}, #{stuname}, #{stusex}, #{stuage}, #{stuyuanxi}, #{stuaddress}, #{stuphone}, #{studorm}, #{studromnumber},#{logoImage})
+	</insert>
+	
+	<!-- 修改一个学生 -->
+	<update id="updateStudentsById" parameterType="Students">
+    update students
+    <set>
+    <if test="ids != null">
+        ids = #{ids},
+      </if>
+      <if test="id != null">
+        id = #{id},
+      </if>
+      <if test="stuname != null">
+        stuname = #{stuname},
+      </if>
+      <if test="stusex != null">
+        stusex = #{stusex},
+      </if>
+      <if test="stuage != null">
+        stuage = #{stuage},
+      </if>
+      <if test="stuyuanxi != null">
+        stuyuanxi = #{stuyuanxi},
+      </if>
+      <if test="stuaddress != null">
+        stuaddress = #{stuaddress},
+      </if>
+      <if test="stuphone != null">
+        stuphone = #{stuphone},
+      </if>
+      <if test="studorm != null">
+        studorm = #{studorm},
+      </if>
+      <if test="studromnumber != null">
+        studromnumber = #{studromnumber},
+      </if>
+      <if test="logoImage != null">
+        logoImage = #{logoImage},
+      </if>
+    </set>
+    	where ids = #{ids}
+  </update>
+</mapper>

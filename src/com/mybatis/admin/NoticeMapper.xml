@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- com.dao.AdminDao对应Dao接口 -->
+<mapper namespace="com.dao.NoticeDao">
+	<!-- 添加公告-->
+	<insert id="addNotice" parameterType="Notice">
+		insert into dormnotice (title,notice)
+		values (#{title}, #{notice})
+	</insert>
+	<!-- 查询公告-->
+	<select id="selectNotice" parameterType="Notice" resultType="Notice">
+		select * from dormnotice
+	</select>
+	<!-- 删除一个公告 -->
+	<delete id="deleteANotice" parameterType="Integer">
+		delete from dormnotice where id = #{id}
+	</delete>
+	<!-- 删除多个公告 -->
+	<delete id="deleteNotice"  parameterType="List">
+		delete from dormnotice where id in
+		<foreach item="item" index="index" collection="list"
+		open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>
